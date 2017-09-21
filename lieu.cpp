@@ -79,5 +79,3 @@ Lieu * Lieu::getAccessible(std::string mode, long n){
     res = t.desserte[n];
   return res;
 }
-
-
