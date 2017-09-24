@@ -8,5 +8,7 @@
 void testPersonnage(void);
 void testLieu(void);
 void testTransports(void);
+void testTP(void);
+void testArray(void);
 
 #endif

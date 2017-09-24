@@ -13,9 +13,11 @@ class Lieu {
   long id;
   static Array<Lieu *> listLieu;
   std::string nom;
-  Transports *moyens;
+  Transports moyens[NB_TRANSPORTS];
   long nbMoyen;
  public:
+ 
+  Transports * getMoyens();
   Lieu();
   ~Lieu();
   Lieu(std::string n);

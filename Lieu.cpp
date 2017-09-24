@@ -8,6 +8,7 @@ Lieu::Lieu(std::string n) : nom(n), nbMoyen(4){
   moyens[TRAIN] = Transports(TRAIN);
   moyens[AVION] = Transports(AVION);
   moyens[BATEAU] = Transports(BATEAU);
+  listLieu.add(this);
 }
 
 Lieu::Lieu() : nom("null part"), nbMoyen(4){
@@ -15,6 +16,7 @@ Lieu::Lieu() : nom("null part"), nbMoyen(4){
   moyens[TRAIN] = Transports(TRAIN);
   moyens[AVION] = Transports(AVION);
   moyens[BATEAU] = Transports(BATEAU);
+  listLieu.add(this);
 }
 
 Lieu::~Lieu(){
@@ -33,6 +35,8 @@ Lieu * Lieu::getAccessible(std::string mode, long n){
   Moyen m = Transports::strToMoyen(mode);
   if(m == AUCUN)
     return NULL;
+  if(moyens[m].getArray().get(n) == NULL)
+    return NULL;
   return *(moyens[m].getArray().get(n));
 }
 
@@ -49,7 +53,7 @@ long Lieu::distance(Moyen mt, Lieu * l){
     Le parcours s'arrete soit si la distance a été trouvé soit si la composante connexe courante a entièrement été visité (tenant compte du/des moyen(s) de transport(s) considéré(s))
    */
   int s = listLieu.getSize();
-  int *marque = new int [s];
+  int *marque = (int*)malloc(s*sizeof(int));
   for(long i = 0 ; i<s ; i++)
     marque[i] = -1;
   
@@ -62,16 +66,20 @@ long Lieu::distance(Moyen mt, Lieu * l){
     Lieu * temp = q.front()->getAccessible(Transports::moyenToStr(mt), i);
     while(temp != NULL){
       //parcours de tous les voisins atteignable par le moyens de transports mt et on les marque de la distance voulu s'il n'ont pas été déjà parcouru
-      if(marque[listLieu.getIndice(temp)] == -1)
+      if(marque[listLieu.getIndice(temp)] == -1){
 	marque[listLieu.getIndice(temp)] = marque[listLieu.getIndice(q.front())] + 1;
-      q.push(temp);
+	q.push(temp);
+      }
       //passage au voisin suivant
       temp = q.front()->getAccessible(Transports::moyenToStr(mt), ++i);
     }
     q.pop();
   }
   int res = marque[listLieu.getIndice(l)];
-  delete[] marque;
+  free(marque);
   return res;
 }
-//---------------------------
+
+Transports * Lieu::getMoyens(){
+  return moyens;
+}

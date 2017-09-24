@@ -30,7 +30,7 @@ void Personnage::deplace(Lieu * l){
     std::cout << "Zut je ne peut pas accéder à ce lieu par la route" << std::endl;
   else {
     setPos(l);
-    std::cout << "Je vais à " << pos->getNom() << "en faisant " << d << " pas." << std::endl; 
+    std::cout << "Je vais à " << pos->getNom() << " en faisant " << d << " pas." << std::endl; 
   }
 }
 

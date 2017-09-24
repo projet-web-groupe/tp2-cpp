@@ -24,21 +24,26 @@ class Array {
 template <class T>
 void Array<T>::add(T elm){
   if(array == NULL && size <= -1){
-    array = new T[PAGE];
+    // std::cout << "cas 1 (" << size <<"|"<<sizeMax << ")\n" << std::endl;
+    array = (T*) malloc(10*sizeof(T));
     size = 1;
-    sizeMax = PAGE;
+    sizeMax = 10;
     array[0] = elm;
   }
-  else if (array != NULL && size < sizeMax)
+  else if (array != NULL && size < sizeMax){
+    //std::cout << "cas 2\n" << size <<"|"<<sizeMax << ")\n"  << std::endl;
+    size++;
     array[size-1] = elm;
-
+  }
   else if (array != NULL && size == sizeMax){
-    T * temp = new T[size + 10];
+    //std::cout << "cas 3\n" << size <<"|"<<sizeMax << ")\n"  << std::endl;
+    T * temp =(T*) malloc((size+10)*sizeof(T));
     for(int i = 0 ; i < size ; i++)
       temp[i] = array[i];
-    delete[] array;
+    free(array);
     array = temp;
     size++;
+    sizeMax += 10;
     array[size-1] = elm;
   }
   else
@@ -50,19 +55,21 @@ void Array<T>::remove(T elm){
   if(array != NULL && size != -1){
     for(int i =0 ; i < size-1 ; i++)
       if(array[i] == elm){
-	for(int j = i; j < size ; j++)
+	for(int j = i; j < size-1 ; j++)
 	  array[j] = array[j+1];
 	array[size-1] = NULL;
 	size--;
       }
   }
   //Suppression des pages non necessaire sauf la première...
-  if(array != NULL && sizeMax != PAGE && (sizeMax/PAGE - size/PAGE) != 0){
-    long n = 10*((sizeMax/10 - size/10)+1);
-    T * temp = new T[n];
+  if(array != NULL && sizeMax != 10 && (sizeMax - size) == 10){
+    long n = 10*(sizeMax/10 - 1);
+    // std::cout << "true ("<<n<<")\n";
+    T * temp = (T*) malloc(n*sizeof(T));
+    sizeMax = n;
     for(int i = 0 ; i < size ; i++)
       temp[i] = array[i];
-    delete[] array;
+    free(array);
     array = temp;
   }
 }
@@ -81,11 +88,13 @@ long Array<T>::getSize(){
 
 template <class T>
 Array<T>::Array() : array(NULL), size(-1), sizeMax(0){
+  // std::cout << "construction de la list\n";  
 }
 
 template <class T>
 Array<T>::~Array() {
-  delete[] array;
+  //free(array);
+  // std::cout << "destruction de la list\n";
 }
 
 template <class T>
