@@ -9,7 +9,9 @@ int main(){
 
 void testPersonnage(void){
   std::cout << "Test de la class Personnage :" << std::endl;
-  Personnage perso1, perso2 = Personnage("John");
+  Lieu l;
+  
+  Personnage perso1 = Personnage(&l), perso2 = Personnage("John", &l);
   perso1.parle("coucou");
   perso2.parle("coucou");
   std::cout << "-- Fin de test --" << std::endl;

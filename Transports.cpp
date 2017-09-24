@@ -1,63 +1,53 @@
 #include "Transports.h"
 #include "Lieu.h"
 
-Transports::Transports() : mode(AUCUN), desserte(NULL), desserteSize(-1), desserteSizeMax(0){
+Transports::Transports() : mode(AUCUN){
 }
-Transports::Transports(int mod) : mode(mod), desserte(NULL), desserteSize(-1), desserteSizeMax(0) {
+
+Transports::Transports(Moyen mod) : mode(mod) {
 }
+
 void Transports::addDesserte(Lieu *l){
-  if(desserte == NULL && desserteSize <= -1){
-    desserte = new Lieu*[PAGE];
-    desserteSize = 1;
-    desserteSizeMax = PAGE;
-    desserte[0] = l;
-  }
-
-  else if (desserte != NULL && desserteSize < desserteSizeMax)
-    desserte[desserteSize-1] = l;
-
-  else if (desserte != NULL && desserteSize == desserteSizeMax){
-    Lieu ** temp = new Lieu* [desserteSize+10];
-    for(int i = 0 ; i < desserteSize ; i++)
-      temp[i] = desserte[i];
-    delete[] desserte;
-    desserte = temp;
-    desserteSize++;
-    desserte[desserteSize-1] = l;
-  }
-  else
-    std::cout << "Erreur Gestion tableau desserte" << std::endl;
+  desserte.add(l);
 }
 
 void Transports::removeDesserte(Lieu *l){
-  if(desserte != NULL && desserteSize != -1){
-    for(int i =0 ; i < desserteSize-1 ; i++)
-      if(desserte[i] == l){
-	for(int j = i; j < desserteSize ; j++)
-	  desserte[j] = desserte[j+1];
-	desserte[desserteSize-1] = NULL;
-	desserteSize-1;
-      }
-  }
+  desserte.remove(l);
+}
+
+Array<Lieu*> Transports::getArray(){
+  return desserte;
+}
+
+Moyen Transports::getMode(){
+  return mode;
+}
+
+Moyen Transports::strToMoyen(std::string s){
+  if(s == ROUTE_STR)
+    return  ROUTE;
+  else if (s == TRAIN_STR)
+    return  TRAIN;
+  else if (s == AVION_STR)
+    return  AVION;
+  else if (s == BATEAU_STR)
+    return  BATEAU;
   else
-  //Suppression des pages non necessaire sauf la première...
-  if(desserte != NULL && desserteSizeMax != PAGE && (desserteSizeMax/PAGE - desserteSize/PAGE) != 0){
-    long n = 10*((desserteSizeMax/10 - desserteSize/10)+1);
-    Lieu ** temp = new Lieu*[n];
-    for(int i = 0 ; i < desserteSize ; i++)
-      temp[i] = desserte[i];
-    delete[] desserte;
-    desserte = temp;
+    return AUCUN;
+}
+
+
+std::string Transports::moyenToStr(Moyen m){
+  switch(m){
+  case (ROUTE):
+    return  ROUTE_STR;
+  case (TRAIN):
+    return  TRAIN_STR;
+  case (AVION):
+    return  AVION_STR;
+  case (BATEAU):
+    return  BATEAU_STR;
+  default :
+    return AUCUN_STR;
   }
-}
-
-Lieu * Transports::getAccessible(std::string mode_arg, long n){
-  Moyen m = strToMoyen(mode_arg);
-  if (n >=0 && n < desserteSize && mode == m)
-    return desserte[n];
-  return NULL;
-}
-
-long Transports::getDesserteSize(){
-  return desserteSize;
 }
