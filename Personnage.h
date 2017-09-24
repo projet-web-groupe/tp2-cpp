@@ -6,9 +6,10 @@
 #include "Transports.h"
 
 class Personnage {
- private:
+ protected:
   std::string nom;
   Lieu * pos;
+  void action();
  public:
   Personnage(Lieu * p);
   Personnage(std::string n, Lieu * p);

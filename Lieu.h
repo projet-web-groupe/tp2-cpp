@@ -15,12 +15,13 @@ class Lieu {
   std::string nom;
   Transports moyens[NB_TRANSPORTS];
   long nbMoyen;
+  std::string etat;
  public:
  
   Transports * getMoyens();
   Lieu();
   ~Lieu();
-  Lieu(std::string n);
+  Lieu(std::string n, std::string e="");
   std::string getNom(void);//public
   long getNbMoyen(void);//public ou supp
   Lieu * getAccessible(std::string mode, long n);//public

@@ -187,3 +187,99 @@ void testArray(void){
   }
   delete a;
 }
+
+void tp3(void){
+  Lieu chicago("Chicago","IL"),
+    indianapolis("Indiannapolis","IN"),
+    grandRapids("Grand Rapids","MI"),
+    cincinnati("Cincinnati","OH"),
+    toledo("Toledo","OH"),
+    detroit("Detroit","MI"),
+    colombus("Colombus","OH"),
+    cleveland("Cleveland","OH"),
+    pittsburgh("Pittsburgh","PA"),
+    buffalo("Buffalo","NY"),
+    philadelphie("Philladelphie","PA"),
+    newYork("New York","NY"),
+    albany("Albany","NY");
+
+  chicago.getMoyens()[AVION].addDesserte(&newYork);
+  chicago.getMoyens()[AVION].addDesserte(&philadelphie);
+  chicago.getMoyens()[TRAIN].addDesserte(&toledo);
+  chicago.getMoyens()[TRAIN].addDesserte(&cincinnati);
+  chicago.getMoyens()[BATEAU].addDesserte(&grandRapids);
+  chicago.getMoyens()[ROUTE].addDesserte(&indiannapolis);
+
+  indiannapolis.getMoyens()[ROUTE].addDesserte(&chicago);
+  indiannapolis.getMoyens()[ROUTE].addDesserte(&cincinnati);
+  indiannapolis.getMoyens()[ROUTE].addDesserte(&colombus);
+  indiannapolis.getMoyens()[AVION].addDesserte(&newYork);
+
+  grandRapids.getMoyens()[BATEAU].addDesserte(&chicago);
+  grandRapids.getMoyens()[ROUTE].addDesserte(&detroit);
+
+  cincinnati.getMoyens()[ROUTE].addDesserte(&indiannapolis);
+  cincinnati.getMoyens()[ROUTE].addDesserte(&colombus);
+  cincinnati.getMoyens()[ROUTE].addDesserte(&toledo);
+  cincinnati.getMoyens()[TRAIN].addDesserte(&chicago);
+  cincinnati.getMoyens()[TRAIN].addDesserte(&cleveland);
+  cincinnati.getMoyens()[AVION].addDesserte(&pittsburgh);
+  cincinnati.getMoyens()[AVION].addDesserte(&philadelphie);
+
+  toledo.getMoyens()[ROUTE].addDesserte(&detroit);
+  toledo.getMoyens()[ROUTE].addDesserte(&cincinnati);
+  toledo.getMoyens()[ROUTE].addDesserte(&cleveland);
+  toledo.getMoyens()[TRAIN].addDesserte(&chicago);
+  toledo.getMoyens()[TRAIN].addDesserte(&cleveland);
+  toledo.getMoyens()[BATEAU].addDesserte(&cleveland);
+
+  detroit.getMoyens()[ROUTE].addDesserte(&grandRapids);
+  detroit.getMoyens()[ROUTE].addDesserte(&toledo);
+  detroit.getMoyens()[AVION].addDesserte(&newYork);
+
+  colombus.getMoyens()[ROUTE].addDesserte(&indiannapolis);
+  colombus.getMoyens()[ROUTE].addDesserte(&cincinnati);
+  colombus.getMoyens()[ROUTE].addDesserte(&cleveland);
+  colombus.getMoyens()[ROUTE].addDesserte(&pittsburgh);
+
+  cleveland.getMoyens()[ROUTE].addDesserte(&toledo);
+  cleveland.getMoyens()[ROUTE].addDesserte(&colombus);
+  cleveland.getMoyens()[ROUTE].addDesserte(&pittsburgh);
+  cleveland.getMoyens()[TRAIN].addDesserte(&toledo);
+  cleveland.getMoyens()[TRAIN].addDesserte(&cincinnati);
+  cleveland.getMoyens()[BATEAU].addDesserte(&toledo);
+  cleveland.getMoyens()[BATEAU].addDesserte(&buffalo);
+  cleveland.getMoyens()[AVION].addDesserte(&newYork);
+
+  pittsburgh.getMoyens()[ROUTE].addDesserte(&colombus);
+  pittsburgh.getMoyens()[ROUTE].addDesserte(&cleveland);
+  pittsburgh.getMoyens()[ROUTE].addDesserte(&philadelphie);
+  pittsburgh.getMoyens()[TRAIN].addDesserte(&philadelphie);
+  pittsburgh.getMoyens()[AVION].addDesserte(&cincinnati);
+
+  buffalo.getMoyens()[ROUTE].addDesserte(&albany);
+  buffalo.getMoyens()[TRAIN].addDesserte(&newYork);
+  buffalo.getMoyens()[BATEAU].addDesserte(&cleveland);
+
+  philadelphie.getMoyens()[ROUTE].addDesserte(&pittsburgh);
+  philadelphie.getMoyens()[ROUTE].addDesserte(&newYork);
+  philadelphie.getMoyens()[TRAIN].addDesserte(&pittsburgh);
+  philadelphie.getMoyens()[TRAIN].addDesserte(&newYork);
+  philadelphie.getMoyens()[AVION].addDesserte(&cincinnati);
+  philadelphie.getMoyens()[AVION].addDesserte(&chicago);
+  philadelphie.getMoyens()[AVION].addDesserte(&newYork);
+
+  newYork.getMoyens()[ROUTE].addDesserte(&albany);
+  newYork.getMoyens()[ROUTE].addDesserte(&philadelphie);
+  newYork.getMoyens()[TRAIN].addDesserte(&buffalo);
+  newYork.getMoyens()[TRAIN].addDesserte(&philadelphie);
+  newYork.getMoyens()[AVION].addDesserte(&detroit);
+  newYork.getMoyens()[AVION].addDesserte(&chicago);
+  newYork.getMoyens()[AVION].addDesserte(&philadelphie);
+  newYork.getMoyens()[AVION].addDesserte(&indiannapolis);
+  newYork.getMoyens()[AVION].addDesserte(&cleveland);
+
+  albany.getMoyens()[ROUTE].addDesserte(&buffalo);
+  albany.getMoyens()[ROUTE].addDesserte(&newYork);
+  
+}
