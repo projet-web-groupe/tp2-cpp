@@ -3,13 +3,22 @@
 
 #include <string>
 #include "Personnage.h"
+#include "time.h"
 #include <iostream>
 
-class Heritiere : Personnage{
+class Policier;
+
+class Heritiere : public Personnage{
   bool captive;
  public:
+  //static Array<Heritiere *> listHeritiere;
   Heritiere(Lieu * p, std::string n = "noName");
   void setCaptive(bool b);
-}
+  bool getCaptive(void);
+
+  void estEnlevee(void);
+  void estLiberee(Policier& c);
+  void action();
+};
 
 #endif

@@ -39,15 +39,15 @@ Moyen Transports::strToMoyen(std::string s){
 
 std::string Transports::moyenToStr(Moyen m){
   switch(m){
-  case (ROUTE):
+    case (ROUTE):
     return  ROUTE_STR;
-  case (TRAIN):
+    case (TRAIN):
     return  TRAIN_STR;
-  case (AVION):
+    case (AVION):
     return  AVION_STR;
-  case (BATEAU):
+    case (BATEAU):
     return  BATEAU_STR;
-  default :
+    default :
     return AUCUN_STR;
   }
 }

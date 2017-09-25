@@ -1,9 +1,10 @@
 #include "Lieu.h"
-//#include "Transports.h"
+#include "Transports.h"
+
 
 Array<Lieu *> Lieu::listLieu;
 
-Lieu::Lieu(std::string n) : nom(n), nbMoyen(4){
+Lieu::Lieu(std::string n, std::string e) : nom(n), nbMoyen(4){
   moyens[ROUTE] = Transports(ROUTE);
   moyens[TRAIN] = Transports(TRAIN);
   moyens[AVION] = Transports(AVION);

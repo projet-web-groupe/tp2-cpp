@@ -1,12 +1,12 @@
 #ifndef LIEU_H
 #define LIEU_H
 
-#include <iostream>
 #include <queue>
 #include "Array.h"
 #include "value.h"
 #include "Transports.h"
-//class Transports;
+
+class Transports;
 
 class Lieu {
  private:

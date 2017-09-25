@@ -37,11 +37,7 @@ void Array<T>::add(T elm){
   }
   else if (array != NULL && size == sizeMax){
     //std::cout << "cas 3\n" << size <<"|"<<sizeMax << ")\n"  << std::endl;
-    T * temp =(T*) malloc((size+10)*sizeof(T));
-    for(int i = 0 ; i < size ; i++)
-      temp[i] = array[i];
-    free(array);
-    array = temp;
+    array =(T*) realloc(array,(size +10)*sizeof(T));
     size++;
     sizeMax += 10;
     array[size-1] = elm;
@@ -57,7 +53,6 @@ void Array<T>::remove(T elm){
       if(array[i] == elm){
 	for(int j = i; j < size-1 ; j++)
 	  array[j] = array[j+1];
-	array[size-1] = NULL;
 	size--;
       }
   }
@@ -87,13 +82,13 @@ long Array<T>::getSize(){
 }
 
 template <class T>
-Array<T>::Array() : array(NULL), size(-1), sizeMax(0){
+Array<T>::Array() : size(-1), sizeMax(0),array(NULL){
   // std::cout << "construction de la list\n";  
 }
 
 template <class T>
 Array<T>::~Array() {
-  //free(array);
+  free(array);
   // std::cout << "destruction de la list\n";
 }
 

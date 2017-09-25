@@ -43,3 +43,21 @@ void Personnage::deplace(Lieu * l, Transports t){
     std::cout << "Je vais à " << pos->getNom() << " par le " << Transports::moyenToStr(t.getMode()) << std::endl; 
   }
 }
+
+double Personnage::randDouble(double min, double max){
+  srand(time(NULL));
+  return min+ (max-min)*((double)rand()/(double)RAND_MAX);
+}
+
+int Personnage::randInt(int min, int max){
+  srand(time(NULL));
+  return min + rand()%(max - min);
+}
+
+Lieu * Personnage::getPos(void){
+  return pos;
+}
+
+std::string Personnage::getNom(void){
+  return nom;
+}
