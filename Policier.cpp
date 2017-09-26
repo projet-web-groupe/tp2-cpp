@@ -1,6 +1,9 @@
 #include "Policier.h"
 #include "Heritiere.h"
 #include "Gangster.h"
+#include <string>
+#include <cmath>
+#include <iostream>
 
 Policier::Policier(Lieu * p, Lieu * base, std::string n) : Personnage(n,p), qg(base), reputation(0),argent(0){
 }
@@ -30,56 +33,13 @@ void Policier::setArgent(int a){
 }
 
 void Policier::action(void){
-  srand(time(NULL));
-  int r = randInt(0,5);
-  long s;
-  Lieu * dest;
-  switch(r){
-    case(ROUTE):
-    //prendre la route
-    s = pos->getMoyens()[ROUTE].getArray().getSize();
-    if(s > 0){
-      dest = pos->getAccessible(ROUTE_STR, rand()%s);
-      deplace(dest,pos->getMoyens()[ROUTE]);
+  Gangster * g;
+  for(int i = 0; i < Gangster::listGangster.getSize() ; i++){
+    g = *Gangster::listGangster.get(i);
+    if(pos == g->getPos()){
+      attaque(*g);
     }
-    else
-      r = AUCUN;
-    break;
-    case(TRAIN):
-    //prendre le train
-    s = pos->getMoyens()[TRAIN].getArray().getSize();
-    if(s > 0){
-      dest = pos->getAccessible(TRAIN_STR, rand()%s);
-      deplace(dest,pos->getMoyens()[TRAIN]);
-    }
-    else
-      r = AUCUN;
-    break;
-    case(BATEAU):
-    //prendre le bateau
-    s = pos->getMoyens()[BATEAU].getArray().getSize();
-    if(s > 0){
-      dest = pos->getAccessible(BATEAU_STR, rand()%s);
-      deplace(dest,pos->getMoyens()[BATEAU]);
-    }
-    else
-      r = AUCUN;
-    break;
-    case(AVION):
-    //prendre l'avion
-    s = pos->getMoyens()[AVION].getArray().getSize();
-    if(s > 0){
-      dest = pos->getAccessible(AVION_STR, rand()%s);
-      deplace(dest,pos->getMoyens()[AVION]);
-    }
-    else
-      r = AUCUN;
-    break;
-    default:
-    //ne pas bouger
-    ;
   }
-  
 }
 
 

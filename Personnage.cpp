@@ -1,4 +1,7 @@
 #include "Personnage.h"
+#include "Transports.h"
+#include "Lieu.h"
+#include <string>
 
 Personnage::Personnage(Lieu * p) : nom("noName"), pos(p)
 {
@@ -44,6 +47,58 @@ void Personnage::deplace(Lieu * l, Transports t){
   }
 }
 
+void Personnage::deplaceAleatoire(void){
+  srand(time(NULL));
+  int r = randInt(0,5);
+  long s;
+  Lieu * dest;
+  switch(r){
+    case(ROUTE):
+    //prendre la route
+    s = pos->getMoyens()[ROUTE].getArray().getSize();
+    if(s > 0){
+      dest = pos->getAccessible(ROUTE_STR, rand()%s);
+      deplace(dest,pos->getMoyens()[ROUTE]);
+    }
+    else
+      r = AUCUN;
+    break;
+    case(TRAIN):
+    //prendre le train
+    s = pos->getMoyens()[TRAIN].getArray().getSize();
+    if(s > 0){
+      dest = pos->getAccessible(TRAIN_STR, rand()%s);
+      deplace(dest,pos->getMoyens()[TRAIN]);
+    }
+    else
+      r = AUCUN;
+    break;
+    case(BATEAU):
+    //prendre le bateau
+    s = pos->getMoyens()[BATEAU].getArray().getSize();
+    if(s > 0){
+      dest = pos->getAccessible(BATEAU_STR, rand()%s);
+      deplace(dest,pos->getMoyens()[BATEAU]);
+    }
+    else
+      r = AUCUN;
+    break;
+    case(AVION):
+    //prendre l'avion
+    s = pos->getMoyens()[AVION].getArray().getSize();
+    if(s > 0){
+      dest = pos->getAccessible(AVION_STR, rand()%s);
+      deplace(dest,pos->getMoyens()[AVION]);
+    }
+    else
+      r = AUCUN;
+    break;
+    default:
+    //ne pas bouger
+    ;
+  }
+}
+
 double Personnage::randDouble(double min, double max){
   srand(time(NULL));
   return min+ (max-min)*((double)rand()/(double)RAND_MAX);
@@ -60,4 +115,8 @@ Lieu * Personnage::getPos(void){
 
 std::string Personnage::getNom(void){
   return nom;
+}
+
+void Personnage::action(){
+  
 }

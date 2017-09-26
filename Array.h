@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 template <class T>
 class Array {

@@ -1,10 +1,19 @@
+#include "Array.h"
 #include "Heritiere.h"
 #include "Policier.h"
+#include "Personnage.h"
+#include <ctime>
+#include <string>
+#include <iostream>
 
-//Array<Heritiere *> Heritiere::listHeritiere;
+Array<Heritiere *> Heritiere::listHeritiere;
 
 Heritiere::Heritiere(Lieu * p, std::string n) : Personnage(n,p), captive(false) {
-	//listHeritiere.add(this);
+	listHeritiere.add(this);
+}
+
+Heritiere::~Heritiere(){
+	listHeritiere.remove(this);
 }
 
 void Heritiere::setCaptive(bool b){
@@ -21,5 +30,10 @@ void Heritiere::estEnlevee(void){
 }
 void Heritiere::estLiberee(Policier& c){
 	captive = false;
-std::cout << "Grand merci, "<< c.getNom() << ", vous m'avez sauvée !" << std::endl;	
+	std::cout << "Grand merci, "<< c.getNom() << ", vous m'avez sauvée !" << std::endl;	
+}
+
+void Heritiere::action()
+{
+	;
 }

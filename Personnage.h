@@ -1,15 +1,15 @@
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
 
-#include "Lieu.h"
 #include <string>
-#include "Transports.h"
+#include "Lieu.h"
+class Transports;
+//class Lieu;
 
 class Personnage {
  protected:
   std::string nom;
   Lieu * pos;
-  //virtual void action();
   int randInt(int min, int max);
   double randDouble(double min, double max);
  public:
@@ -22,6 +22,8 @@ class Personnage {
   void setPos(Lieu * l);
   Lieu * getPos(void);
   std::string getNom(void);
+  void deplaceAleatoire(void);
+  virtual void action();
 };
 
 #endif

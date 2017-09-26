@@ -2,9 +2,6 @@
 #define POLICIER_H
 
 #include "Personnage.h"
-#include <string>
-#include <cmath>
-#include <iostream>
 
 class Heritiere;
 class Gangster;

@@ -1,12 +1,12 @@
 #ifndef GANGSTERS_H
 #define GANGSTERS_H
 
-#include <string>
-#include <iostream>
-#include "Personnage.h"
+
 #include "Array.h"
+#include "Personnage.h"
 
 class Heritiere;
+class Personnage;
 class Policier;
 
 class Gangster : public Personnage{

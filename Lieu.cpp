@@ -1,10 +1,14 @@
 #include "Lieu.h"
 #include "Transports.h"
+#include "Array.h"
+#include "value.h"
+#include <queue>
+#include <string>
 
 
 Array<Lieu *> Lieu::listLieu;
 
-Lieu::Lieu(std::string n, std::string e) : nom(n), nbMoyen(4){
+Lieu::Lieu(std::string n, std::string e) : nom(n),etat(e), nbMoyen(4){
   moyens[ROUTE] = Transports(ROUTE);
   moyens[TRAIN] = Transports(TRAIN);
   moyens[AVION] = Transports(AVION);
@@ -12,7 +16,7 @@ Lieu::Lieu(std::string n, std::string e) : nom(n), nbMoyen(4){
   listLieu.add(this);
 }
 
-Lieu::Lieu() : nom("null part"), nbMoyen(4){
+Lieu::Lieu() : nom("null part"),etat(""), nbMoyen(4){
   moyens[ROUTE] = Transports(ROUTE);
   moyens[TRAIN] = Transports(TRAIN);
   moyens[AVION] = Transports(AVION);

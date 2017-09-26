@@ -1,6 +1,9 @@
 #include "Gangster.h"
 #include "Heritiere.h"
 #include "Policier.h"
+#include "Personnage.h"
+#include <string>
+#include <iostream>
 
 Array<Gangster *> Gangster::listGangster;
 
@@ -56,22 +59,33 @@ void Gangster::fuiteAttaque(void){
   std::cout << "Tu crois vraiment pouvoir vaincre le gang " << gang <<" ?" << std::endl;
 }
 
- void Gangster::enleve(Heritiere& d){
+void Gangster::enleve(Heritiere& d){
   std::cout << d.getNom() << ", tu es maintenant à la merci du gang " << gang << " !" << std::endl;
   d.estEnlevee();
   detenu.add(&d);
- }
-  void Gangster::estCapture(Policier& c){
-    enPrison = true;
-    setPos(c.getQg());
+}
+void Gangster::estCapture(Policier& c){
+  enPrison = true;
+  setPos(c.getQg());
+}
+void Gangster::sEvade(){
+  enPrison = false;
+  recompense = 100;
+}
+void Gangster::augmenteRecompense(){
+  recompense += 100;
+}
+void Gangster::effaceRecompense(){
+  recompense = 0;
+}
+
+void Gangster::action()
+{
+  Heritiere * h;
+  for(int i = 0; i < Heritiere::listHeritiere.getSize() ; i++){
+    h = *Heritiere::listHeritiere.get(i);
+    if(pos == h->getPos()){
+      enleve(*h);
+    }
   }
-  void Gangster::sEvade(){
-    enPrison = false;
-    recompense = 100;
-  }
-  void Gangster::augmenteRecompense(){
-    recompense += 100;
-  }
-  void Gangster::effaceRecompense(){
-    recompense = 0;
-  }
+}

@@ -1,5 +1,8 @@
 #include "Transports.h"
 #include "Lieu.h"
+#include "value.h"
+#include <string>
+#include "Array.h"
 
 Transports::Transports() : mode(AUCUN){
 }
