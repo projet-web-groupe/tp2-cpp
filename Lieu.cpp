@@ -38,11 +38,13 @@ long Lieu::getNbMoyen(void){
 
 Lieu * Lieu::getAccessible(std::string mode, long n){
   Moyen m = Transports::strToMoyen(mode);
-  if(m == AUCUN)
+  if(m == AUCUN || (m != ROUTE && m != TRAIN && m != BATEAU && m != AVION))
     return NULL;
-  if(moyens[m].getArray().get(n) == NULL)
+
+  Lieu ** res = moyens[m].getArray().get(n);
+  if( res == NULL)
     return NULL;
-  return *(moyens[m].getArray().get(n));
+  return *res;
 }
 
 bool Lieu::estAccessible(Transports mt, Lieu *l){

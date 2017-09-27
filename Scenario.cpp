@@ -102,33 +102,128 @@ Scenario::Scenario(){
 	albany->getMoyens()[ROUTE].addDesserte(newYork);
 
 	listLieu.add(chicago);
+	//std::cout << chicago << std::endl;
 	listLieu.add(indianapolis);
+	//std::cout << indianapolis<< std::endl;
 	listLieu.add(grandRapids);
+	//std::cout <<grandRapids << std::endl;
 	listLieu.add(cincinnati);
+	//std::cout <<cincinnati << std::endl;
 	listLieu.add(toledo);
+	//std::cout <<toledo << std::endl;
 	listLieu.add(detroit);
+	//std::cout << detroit<< std::endl;
 	listLieu.add(colombus);
+	//std::cout <<colombus << std::endl;
 	listLieu.add(cleveland);
+	//std::cout << cleveland<< std::endl;
 	listLieu.add(pittsburgh);
+	//std::cout <<pittsburgh << std::endl;
 	listLieu.add(buffalo);
+	//std::cout <<buffalo << std::endl;
 	listLieu.add(philadelphie);
+	//std::cout << philadelphie<< std::endl;
 	listLieu.add(newYork);
+	//std::cout <<newYork << std::endl;
 	listLieu.add(albany);
+	//std::cout << albany<< std::endl;
 }
 
 void Scenario::scene(void) {
 	Personnage * p;
-	for(long i = 0 ; i < listPerso.getSize() ; i++){
-		p = *listPerso.get(i);
+
+	for(long i = 0 ; i < listPolicier.getSize() ; i++){
+		p = *listPolicier.get(i);
 		p->deplaceAleatoire();
 	}
 
-	for(long i = 0 ; i < listPerso.getSize() ; i++){
-		p = *listPerso.get(i);
+	for(long i = 0 ; i < listHeritiere.getSize() ; i++){
+		p = *listHeritiere.get(i);
+		p->deplaceAleatoire();
+	}
+
+	for(long i = 0 ; i < listGangster.getSize() ; i++){
+		p = *listGangster.get(i);
+		p->deplaceAleatoire();
+	}
+
+	for(long i = 0 ; i < listPolicier.getSize() ; i++){
+		p = *listPolicier.get(i);
+		p->action();
+	}
+
+	for(long i = 0 ; i < listHeritiere.getSize() ; i++){
+		p = *listHeritiere.get(i);
+		p->action();
+	}
+
+	for(long i = 0 ; i < listGangster.getSize() ; i++){
+		p = *listGangster.get(i);
 		p->action();
 	}
 }
 
-void Scenario::addPerso(Personnage *p){
-	listPerso.add(p);
+void Scenario::addHeritiere(std::string _nom, std::string _lieu){
+	Lieu * l;
+	long i;
+	for (i = 0; i < listLieu.getSize(); ++i)
+	{
+		l = *listLieu.get(i);
+		if(l->getNom().compare(_lieu) == 0)
+			break;
+	}
+	if(i != listLieu.getSize())
+		listHeritiere.add(new Heritiere(l, _nom));
+}
+
+void Scenario::addGangster(std::string _nom, std::string _lieu){
+	Lieu * l;
+	long i;
+	for (i = 0; i < listLieu.getSize(); ++i)
+	{
+		l = *listLieu.get(i);
+		if(l->getNom().compare(_lieu) == 0)
+			break;
+	}
+	if(i != listLieu.getSize())
+		listGangster.add(new Gangster(l, _nom));
+}
+
+void Scenario::addPolicier(std::string _nom, std::string _lieu){
+	Lieu * l;
+	long i;
+	for (i = 0; i < listLieu.getSize(); ++i)
+	{
+		l = *listLieu.get(i);
+		if(l->getNom().compare(_lieu) == 0)
+			break;
+	}
+	if(i != listLieu.getSize())
+		listPolicier.add(new Policier(l, l, _nom));
+}
+
+Scenario::~Scenario(){
+	for (long i = 0; i < listLieu.getSize(); ++i){
+		Lieu * l = *listLieu.get(i);
+		listLieu.remove(l);
+		delete l;
+	}
+	
+	for (long i = 0; i < listHeritiere.getSize(); ++i){
+		Heritiere * p = *listHeritiere.get(i);
+		listHeritiere.remove(p);
+		delete p;
+	}
+	
+	for (long i = 0; i < listPolicier.getSize(); ++i){
+		Policier * p = *listPolicier.get(i);
+		listPolicier.remove(p);
+		delete p;
+	}
+
+	for (long i = 0; i < listGangster.getSize(); ++i){
+		Gangster * p = *listGangster.get(i);
+		listGangster.remove(p);
+		delete p;
+	}
 }

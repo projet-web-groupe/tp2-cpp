@@ -8,8 +8,6 @@
 //class Transports;
 
 class Lieu {
- private:
-  long id;
   static Array<Lieu *> listLieu;
   std::string nom;
   std::string etat;

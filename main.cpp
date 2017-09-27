@@ -1,5 +1,6 @@
 #include "test.h"
 
-void main(void){
-	
+int main(){
+	testTP();
+	//testArray();
 }

@@ -1,4 +1,5 @@
 #include "test.h"
+#include "Scenario.h"
 
 void testArray(void){
   Array<int> *a = new Array<int>();
@@ -17,7 +18,7 @@ void testArray(void){
   delete a;
 }
 
-void testPersonnage(void){
+void testTP2Ex1(void){
   std::cout << "Test de la class Personnage :" << std::endl;
   Lieu l;
   
@@ -45,5 +46,8 @@ void testTransports(void){
 }
 
 void testTP(void){
-  
+  Scenario s;
+  s.addPolicier("Gabi", "Chicago");
+  s.addPolicier("John", "Chicago");
+  s.scene();
 }
