@@ -6,5 +6,6 @@ void testLieu(void);
 void testTransports(void);
 void testTP(void);
 void testArray(void);
+void testDeplacementPersonnage(void);
 
 #endif

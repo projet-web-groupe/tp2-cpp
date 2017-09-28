@@ -67,6 +67,10 @@ void testTransports(void){
   std::cout << "-- Fin de test --" << std::endl;
 }
 
+void testDeplacementPersonnage(void){
+  
+}
+
 void testTP(void){
   Scenario s;
   s.addPolicier("Gabi", "Chicago");
