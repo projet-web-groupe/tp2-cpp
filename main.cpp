@@ -4,5 +4,6 @@ int main(){
 	//testPersonnage();
 	//testArray();
 	//testTP();
-	testLieu();
+	//testLieu();
+	testDeplacementPersonnage();
 }
