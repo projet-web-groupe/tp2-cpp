@@ -7,7 +7,7 @@
 class Lieu;
 
 class Transports {
-  Array<Lieu *> *desserte;
+  Array<Lieu *> desserte;
   Moyen mode;
  public:
   static Moyen strToMoyen(std::string s);
@@ -17,7 +17,7 @@ class Transports {
   ~Transports();
   void addDesserte(Lieu * l);
   void removeDesserte(Lieu * l);
-  Array<Lieu *> getArray();
+  Array<Lieu *>& getArray();
   Moyen getMode();
 };
 

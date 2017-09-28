@@ -5,12 +5,12 @@
 
 Personnage::Personnage(Lieu * p) : nom("noName"), pos(p)
 {
-  std::cout << "Bonjour, je suis " << nom << std::endl;
+  std::cout << "Bonjour, je suis " << nom  << " et je viens d'arriver à " << pos->getNom()  << "." << std::endl;
 }
 
 Personnage::Personnage(std::string n, Lieu * p) : nom(n), pos(p)
 {
-  std::cout << "Bonjour, je suis " << nom << std::endl;
+  std::cout << "Bonjour, je suis " << nom  << " et je viens d'arriver à " << pos->getNom() << "." << std::endl;
 }
 
 Personnage::~Personnage()

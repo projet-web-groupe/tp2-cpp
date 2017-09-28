@@ -5,26 +5,23 @@
 #include "Array.h"
 
 Transports::Transports() : mode(AUCUN){
-  desserte = new Array<Lieu *>();
 }
 Transports::~Transports(){
-  delete desserte;
 }
 
 Transports::Transports(Moyen mod) : mode(mod) {
-  desserte = new Array<Lieu *>();
 }
 
 void Transports::addDesserte(Lieu *l){
-  desserte->add(l);
+  desserte.add(l);
 }
 
 void Transports::removeDesserte(Lieu *l){
-  desserte->remove(l);
+  desserte.remove(l);
 }
 
-Array<Lieu*> Transports::getArray(){
-  return *desserte;
+Array<Lieu*>& Transports::getArray(){
+  return desserte;
 }
 
 Moyen Transports::getMode(){

@@ -41,10 +41,8 @@ Lieu * Lieu::getAccessible(std::string mode, long n){
   if(m == AUCUN || (m != ROUTE && m != TRAIN && m != BATEAU && m != AVION))
     return NULL;
 
-  Lieu ** res = moyens[m].getArray().get(n);
-  if( res == NULL)
-    return NULL;
-  return *res;
+  Lieu * res = *moyens[m].getArray().get(n);
+  return res;
 }
 
 bool Lieu::estAccessible(Transports mt, Lieu *l){

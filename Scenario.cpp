@@ -112,21 +112,21 @@ Scenario::Scenario(){
 	listLieu.add(toledo);
 	//std::cout <<toledo << std::endl;
 	listLieu.add(detroit);
-	//std::cout << detroit<< std::endl;
+	//	std::cout << detroit<< std::endl;
 	listLieu.add(colombus);
-	//std::cout <<colombus << std::endl;
+	//	std::cout <<colombus << std::endl;
 	listLieu.add(cleveland);
-	//std::cout << cleveland<< std::endl;
+	//	std::cout << cleveland<< std::endl;
 	listLieu.add(pittsburgh);
-	//std::cout <<pittsburgh << std::endl;
+	//	std::cout <<pittsburgh << std::endl;
 	listLieu.add(buffalo);
-	//std::cout <<buffalo << std::endl;
+	//	std::cout <<buffalo << std::endl;
 	listLieu.add(philadelphie);
-	//std::cout << philadelphie<< std::endl;
+	//	std::cout << philadelphie<< std::endl;
 	listLieu.add(newYork);
-	//std::cout <<newYork << std::endl;
+	//	std::cout <<newYork << std::endl;
 	listLieu.add(albany);
-	//std::cout << albany<< std::endl;
+	//	std::cout << albany<< std::endl;
 }
 
 void Scenario::scene(void) {

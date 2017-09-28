@@ -1,6 +1,8 @@
 #include "test.h"
 
 int main(){
-	testTP();
+	//testPersonnage();
 	//testArray();
+	//testTP();
+	testLieu();
 }
